@@ -10,6 +10,18 @@
 
   <body>
     <h1>THREE CARDS</h1>
+    <button id='test'>TEST</button>
   </body>
+
+  <script>
+    const testButton = document.getElementById('test');
+    testButton.addEventListener('click', testClick);
+    function testClick() {
+      fetch('/createCard')
+        .then((data) => data.json())
+        .then((result) => console.log(result))
+        .catch(err => console.log(err))
+    };
+  </script>
 
 </html>
