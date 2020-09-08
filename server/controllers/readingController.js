@@ -3,16 +3,9 @@ const { Card, Reading } = require('../models/threeCardsModels');
 const readingController = {};
 
 readingController.newCard = (req, res, next) => {
-  Reading.create({
-    user: 'Peege',
-    cards: [1, 72, 34],
-    question: 'Will I ever be rich?',
-    answer: 'Probably Not',
-    notes: [
-      'Hope so, these are pretty scary questions',
-      'Wow wouldnt it be cool if these come trye!?',
-    ],
-  })
+  console.log(req.body);
+  Card.find({ key: req.body.key })
+    .then((result) => (res.locals.image = result[0]))
     .then(() => next())
     .catch((err) => {
       return next({ err: err });
