@@ -1,17 +1,23 @@
 import React from 'react';
 
 function LoginPanel(props) {
-  const { setNewUsername } = props;
+  const { setUsername, setPassword } = props;
+
   return (
-    <div>
-      <h1>test</h1>
-      <input
-        placeholder='username'
-        onChange={(e) => setNewUsername(e.target.value)}
-      ></input>
-      <input placeholder='password'></input>
-      <button>login</button>
-    </div>
+    <>
+      <div>
+        <h1>Login</h1>
+        <input
+          placeholder='username'
+          onChange={(e) => setUsername(e.target.value)}
+        ></input>
+        <input
+          placeholder='password'
+          onChange={(e) => setPassword(e.target.value)}
+        ></input>
+        <button>login</button>
+      </div>
+    </>
   );
 }
 
