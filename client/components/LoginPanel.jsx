@@ -1,8 +1,9 @@
 import React from 'react';
 
 function LoginPanel(props) {
-  const { setUsername, setPassword } = props;
+  const { setUsername, setPassword, username, password } = props;
 
+  function handleLogin(username, password) {}
   return (
     <>
       <div>
