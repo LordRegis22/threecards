@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as userActions from '../../actions/userActions';
 import * as readingActions from '../../actions/readingActions';
 import ReadingPanel from '../components/ReadingPanel.jsx';
-import LoginPanel from '../components/LoginPanel.jsx';
+import LoginContainer from './LoginContainer';
 
 const mapStateToProps = (state) => ({ loggedinUser: state.user.loggedinUser });
 
@@ -16,10 +16,10 @@ export class MainContainer extends Component {
     super(props);
   }
   render() {
-    const { loggedinUser, setNewUsername } = this.props;
     return (
       <>
-        <LoginPanel setNewUsername={setNewUsername} />
+        <h1>Main Container</h1>
+        <LoginContainer />
       </>
     );
   }
