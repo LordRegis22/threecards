@@ -9,7 +9,7 @@ const readingRouter = require('./routes/reading');
 
 app.use(express.json());
 
-app.use('/', express.static(path.resolve(__dirname, '../client')));
+app.use('/', express.static(path.resolve(__dirname, '../')));
 app.use('/images', express.static('images'));
 app.use('/createCard', readingRouter);
 
