@@ -20,6 +20,11 @@ export const setPassword = (password) => ({
   payload: password,
 });
 
+export const setNewNickname = (nickname) => ({
+  type: types.SET_NEW_NICKNAME,
+  payload: nickname,
+});
+
 export const setLoggedinUser = (user) => ({
   type: types.SET_LOGGEDIN_USER,
   payload: user,
