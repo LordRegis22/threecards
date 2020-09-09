@@ -2,7 +2,7 @@
   "name": "three-cards",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
@@ -15,7 +15,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.3",
+    "mongoose": "^5.10.4",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
