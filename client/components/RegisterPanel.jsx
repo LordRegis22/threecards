@@ -2,12 +2,33 @@ import React from 'react';
 
 function RegisterPanel(props) {
   const {
-    setUsername,
-    setPassword,
+    newUsername,
+    newPassword,
+    newNickname,
     setNewUsername,
     setNewPassword,
     setNewNickname,
+    setLoggedinUser,
   } = props;
+
+  function handleCreateNewUser(name, password, nickname) {
+    fetch('/users/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: name,
+        nickname: nickname,
+        password: password,
+        readings: [],
+      }),
+    })
+      .then((data) => data.json)
+      .then((newUser) => setLoggedinUser(newUser))
+      .catch((err) => console.log(err));
+  }
+
   return (
     <>
       <div>
@@ -26,7 +47,14 @@ function RegisterPanel(props) {
             setNewPassword(e.target.value);
           }}
         ></input>
-        <button>login</button>
+        <button
+          onClick={(e) => {
+            e.preventDefault(),
+              handleCreateNewUser(newUsername, newPassword, newNickname);
+          }}
+        >
+          Create new user
+        </button>
       </div>
     </>
   );
