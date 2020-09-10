@@ -1,9 +1,5 @@
 import * as types from '../constants/actionTypes';
 
-export const shuffle = () => ({
-  type: types.SHUFFLE,
-});
-
 export const deal = (newCards) => ({ type: types.DEAL, payload: newCards });
 
 export const setQuestion = (question) => ({
