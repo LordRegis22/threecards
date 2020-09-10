@@ -6,12 +6,14 @@ require('dotenv').config();
 const PORT = 2222;
 
 const readingRouter = require('./routes/reading');
+const userRouter = require('./routes/user');
 
 app.use(express.json());
 
-app.use('/', express.static(path.resolve(__dirname, '../')));
+app.use('/', express.static(path.resolve(__dirname, '../client/')));
 app.use('/images', express.static('images'));
-app.use('/createCard', readingRouter);
+app.use('/users', userRouter);
+app.use('/reading', readingRouter);
 
 app.use((req, res) => {
   res.status(404).send("Can't find anything here!");
