@@ -21,17 +21,17 @@ export class MainContainer extends Component {
     return (
       <>
         <h1>Main Container</h1>
-        {/* {loggedinUser.username ? ( */}
-        <ReadingContainer
-          loggedinUser={loggedinUser}
-          setLoggedinUser={setLoggedinUser}
-        />
-        {/* ) : (
+        {loggedinUser.username ? (
+          <ReadingContainer
+            loggedinUser={loggedinUser}
+            setLoggedinUser={setLoggedinUser}
+          />
+        ) : (
           <LoginContainer
             setLoggedinUser={setLoggedinUser}
             loggedinUser={loggedinUser}
           />
-        )} */}
+        )}
       </>
     );
   }
