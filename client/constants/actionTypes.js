@@ -13,3 +13,5 @@ export const SET_ANSWER = 'SET_ANSWER';
 export const SET_QUESTION = 'SET_QUESTION';
 export const SET_NOTES = 'SET_NOTES';
 export const SAVE_READING = 'SAVE_READING';
+export const CARDS_DEALT = 'CARDS_DEALT';
+export const SHOW_ANSWER = 'SHOW_ANSWER';
