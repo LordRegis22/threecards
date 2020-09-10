@@ -2,10 +2,10 @@ const { Card, Reading } = require('../models/threeCardsModels');
 
 const readingController = {};
 
-readingController.newCard = (req, res, next) => {
+readingController.getCardImg = (req, res, next) => {
   console.log(req.body);
-  Card.find({ key: req.body.key })
-    .then((result) => (res.locals.image = result[0]))
+  Card.findOne({ key: req.params.key })
+    .then((result) => (res.locals.image = result))
     .then(() => next())
     .catch((err) => {
       return next({ err: err });
