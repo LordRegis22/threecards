@@ -24,7 +24,7 @@ function RegisterPanel(props) {
         readings: [],
       }),
     })
-      .then((data) => data.json)
+      .then((data) => data.json())
       .then((newUser) => setLoggedinUser(newUser))
       .catch((err) => console.log(err));
   }
