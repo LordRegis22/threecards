@@ -1,4 +1,4 @@
-import * as types from '../../constants/actionTypes';
+import * as types from '../constants/actionTypes';
 
 const initialState = {
   username: '',
@@ -6,7 +6,7 @@ const initialState = {
   newUsername: '',
   newPassword: '',
   newNickname: '',
-  loggedinUser: {},
+  loggedinUser: { username: 'regis' },
 };
 
 const userReducer = (state = initialState, action) => {
@@ -35,7 +35,15 @@ const userReducer = (state = initialState, action) => {
       return { ...state, newNickname: updatedNewNickname };
     case types.SET_LOGGEDIN_USER:
       updatedLoggedinUser = action.payload;
-      return { ...state, loggedinUser: updatedLoggedinUser };
+      return {
+        ...state,
+        updatedNewUsername: '',
+        updatedNewPassword: '',
+        updatedNewNickname: '',
+        updatedUsername: '',
+        updatedPassword: '',
+        loggedinUser: updatedLoggedinUser,
+      };
     default:
       return state;
   }
