@@ -21,3 +21,11 @@ export const saveReading = (reading) => ({
   type: types.SAVE_READING,
   payload: reading,
 });
+
+export const cardsDealt = () => ({
+  type: types.CARDS_DEALT,
+});
+
+export const showAnswer = () => ({
+  type: types.SHOW_ANSWER,
+});
