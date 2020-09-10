@@ -38,5 +38,14 @@ const readingSchema = new mongoose.Schema({
 
 const Reading = mongoose.model('reading', readingSchema);
 
+const userSchema = new mongoose.Schema({
+  username: String,
+  nickname: String,
+  password: String,
+  readings: Array,
+});
+
+const User = mongoose.model('user', userSchema);
+
 //export models for use
-module.exports = { Card, Reading };
+module.exports = { Card, Reading, User };
