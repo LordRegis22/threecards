@@ -5,10 +5,15 @@ export default function Card(props) {
     fetch(`/reading/${key}`)
       .then((data) => data.json())
       .then((result) => {
+        props.showAnswer();
+        e.classList.add('flipping');
+        setTimeout(() => e.setAttribute('src', result.imgUrl), 500);
         if (result.key > 78) {
-          e.classList.add('reversed');
+          setTimeout(() => e.classList.add('reversed'), 500);
         }
-        e.setAttribute('src', result.imgUrl);
+        const keywords = e.nextElementSibling;
+        keywords.innerText = result.keywords;
+        keywords.style.opacity = 1;
       })
       .catch((err) => console.log(err));
   }
