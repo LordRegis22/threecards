@@ -19,7 +19,7 @@ export default function Card(props) {
   }
   return (
     <img
-      src='/images/back.png'
+      src={!props.cardsDealt ? '/images/back.png' : '/images/back.png'}
       onClick={(e) => flipCard(e.target, props.cardNumber)}
       className='card'
     ></img>
