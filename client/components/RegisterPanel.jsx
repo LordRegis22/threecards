@@ -31,7 +31,7 @@ function RegisterPanel(props) {
 
   return (
     <>
-      <div>
+      <div className='register-panel'>
         <h1>Register</h1>
         <input
           placeholder='Nickname'
@@ -48,6 +48,7 @@ function RegisterPanel(props) {
           }}
         ></input>
         <button
+          disabled={!newUsername || !newPassword || !newNickname ? true : false}
           onClick={(e) => {
             e.preventDefault(),
               handleCreateNewUser(newUsername, newPassword, newNickname);
