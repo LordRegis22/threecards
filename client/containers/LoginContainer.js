@@ -41,8 +41,7 @@ export class LoginContainer extends Component {
     } = this.props;
 
     return (
-      <>
-        <h1>Login Container</h1>
+      <div className='login-container'>
         <LoginPanel
           username={username}
           password={password}
@@ -59,7 +58,7 @@ export class LoginContainer extends Component {
           setNewNickname={setNewNickname}
           setLoggedinUser={setLoggedinUser}
         />
-      </>
+      </div>
     );
   }
 }
