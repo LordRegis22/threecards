@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({ loggedinUser: state.user.loggedinUser });
 const mapDispatchToProps = (dispatch) => ({
   setLoggedinUser: (userInfo) =>
     dispatch(userActions.setLoggedinUser(userInfo)),
+  logout: () => dispatch(userActions.logout()),
 });
 
 export class MainContainer extends Component {
@@ -17,10 +18,17 @@ export class MainContainer extends Component {
     super(props);
   }
   render() {
-    const { loggedinUser, setLoggedinUser } = this.props;
+    const { loggedinUser, setLoggedinUser, logout } = this.props;
     return (
       <>
-        <h1>Main Container</h1>
+        <header className='frame'>
+          {loggedinUser.nickname && <p>Welcome, {loggedinUser.nickname}</p>}
+          {loggedinUser.username && (
+            <button className='logout' onClick={logout}>
+              Logout
+            </button>
+          )}
+        </header>
         {loggedinUser.username ? (
           <ReadingContainer
             loggedinUser={loggedinUser}
