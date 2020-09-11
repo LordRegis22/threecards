@@ -21,7 +21,8 @@ const readingReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.DEAL:
       updatedCards = action.payload;
-      return { ...state, cards: updatedCards };
+      updatedCardsDealt = true;
+      return { ...state, cards: updatedCards, cardsDealt: updatedCardsDealt };
     case types.SET_ANSWER:
       updatedAnswer = action.payload;
       return { ...state, answer: updatedAnswer };
@@ -33,9 +34,6 @@ const readingReducer = (state = initialState, action) => {
       return { ...state, notes: updatedNotes };
     case types.SAVE_READING:
       return initialState;
-    case types.CARDS_DEALT:
-      updatedCardsDealt = true;
-      return { ...state, cardsDealt: updatedCardsDealt };
     case types.SHOW_ANSWER:
       updatedDisplayAnswer = state.displayAnswer + 1;
       return { ...state, displayAnswer: updatedDisplayAnswer };
