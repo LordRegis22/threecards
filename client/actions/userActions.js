@@ -29,3 +29,7 @@ export const setLoggedinUser = (user) => ({
   type: types.SET_LOGGEDIN_USER,
   payload: user,
 });
+
+export const logout = () => ({
+  type: types.LOGOUT,
+});
