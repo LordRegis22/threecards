@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
   question: state.reading.question,
   notes: state.reading.notes,
   displayAnswer: state.reading.displayAnswer,
+  cardsDealt: state.reading.cardsDealt,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,7 +20,6 @@ const mapDispatchToProps = (dispatch) => ({
   setAnswer: (answer) => dispatch(readingActions.setAnswer(answer)),
   setNotes: (notes) => dispatch(readingActions.setNotes(notes)),
   saveReading: (reading) => dispatch(readingActions.saveReading(reading)),
-  cardsDealt: () => dispatch(readingActions.cardsDealt()),
   showAnswer: () => dispatch(readingActions.showAnswer()),
 });
 
@@ -47,10 +47,17 @@ export class ReadingContainer extends Component {
     } = this.props;
 
     function shuffle() {
+      const cardImages = document.querySelectorAll('.card');
+      let time = 0;
+      for (let el of cardImages) {
+        setTimeout(() => el.classList.add('spin'), time);
+        time += 100;
+        setTimeout(() => el.classList.remove('spin'), 2500);
+      }
+
       const cards = [];
       while (cards.length <= 2) {
-        let newNumber = Math.floor(Math.random() * 157);
-        console.log(newNumber);
+        let newNumber = Math.floor(Math.random() * 155);
         if (
           cards.indexOf(newNumber) === -1 &&
           cards.indexOf(newNumber + 78) === -1 &&
@@ -68,14 +75,11 @@ export class ReadingContainer extends Component {
       let score = 0;
       for (let i = 0; i < dealtCards.length; i++) {
         if (i !== 1 && dealtCards[i] < 78) {
-          console.log('plus 1');
           score += 1;
         } else if (i === 1 && dealtCards[i] < 78) {
-          console.log('plus 2');
           score += 2;
         }
       }
-      console.log(score);
       let divineAnswer = '';
       if (score === 0) {
         divineAnswer = 'Definitely not';
@@ -88,12 +92,16 @@ export class ReadingContainer extends Component {
       } else {
         divineAnswer = 'Definitely!';
       }
-      console.log(divineAnswer);
       setAnswer(divineAnswer);
-      cardsDealt();
     }
 
     function bundleReading(user, cards, answer, question, notes) {
+      const resetCards = document.querySelectorAll('.card');
+      for (let el of resetCards) {
+        el.setAttribute('src', '/images/back.png');
+        el.nextElementSibling.innerText = '';
+      }
+
       const reading = {};
       reading.user = user;
       reading.cards = cards;
@@ -120,12 +128,10 @@ export class ReadingContainer extends Component {
           keys={cards}
           showAnswer={showAnswer}
           displayAnswer={displayAnswer}
+          answer={answer}
+          cardsDealt={cardsDealt}
         ></ReadingPanel>
         <div className='reading-inputs'>
-          <div className='button-row'>
-            <button onClick={shuffle}>SHUFFLE</button>
-            <button onClick={handleDeal}>DEAL</button>
-          </div>
           <div className='text-fields'>
             <input
               placeholder='Question'
@@ -138,22 +144,32 @@ export class ReadingContainer extends Component {
               onChange={(e) => setNotes(e.target.value)}
             ></input>
           </div>
-          <button
-            onClick={() =>
-              bundleReading(
-                loggedinUser.username,
-                cards,
-                answer,
-                question,
-                notes
-              )
-            }
-          >
-            SAVE
-          </button>
+        </div>
+        <div className='button-row'>
+          <button onClick={shuffle}>SHUFFLE</button>
+          <button onClick={handleDeal}>DEAL</button>
+          {cardsDealt && (
+            <button
+              onClick={() =>
+                bundleReading(
+                  loggedinUser.username,
+                  cards,
+                  answer,
+                  question,
+                  notes
+                )
+              }
+            >
+              SAVE
+            </button>
+          )}
         </div>
         {loggedinUser.readings && (
-          <PastReadingPanel pastReadings={loggedinUser.readings} />
+          <PastReadingPanel
+            pastReadings={loggedinUser.readings}
+            loggedinUser={loggedinUser}
+            setLoggedinUser={setLoggedinUser}
+          />
         )}
       </>
     );
