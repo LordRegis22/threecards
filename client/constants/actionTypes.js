@@ -5,6 +5,7 @@ export const SET_USERNAME = 'SET_USERNAME';
 export const SET_PASSWORD = 'SET_PASSWORD';
 export const SET_NEW_NICKNAME = 'SET_NEW_NICKNAME';
 export const SET_LOGGEDIN_USER = 'SET_LOGGEDIN_USER';
+export const LOGOUT = 'LOGOUT';
 
 //reading actions
 export const SHUFFLE = 'SHUFFLE';
