@@ -6,7 +6,7 @@ const initialState = {
   newUsername: '',
   newPassword: '',
   newNickname: '',
-  loggedinUser: { username: 'regis' },
+  loggedinUser: {},
 };
 
 const userReducer = (state = initialState, action) => {
@@ -44,6 +44,9 @@ const userReducer = (state = initialState, action) => {
         updatedPassword: '',
         loggedinUser: updatedLoggedinUser,
       };
+    case types.LOGOUT: {
+      return initialState;
+    }
     default:
       return state;
   }
